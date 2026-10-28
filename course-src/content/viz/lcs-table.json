@@ -1,0 +1,18 @@
+{
+  "title": "Filling the longest common subsequence table",
+  "function": "lcs",
+  "args": {"a": "piano", "b": "pain"},
+  "inputs": [
+    {"name": "a", "type": "str", "label": "first string", "minLen": 1, "maxLen": 7},
+    {"name": "b", "type": "str", "label": "second string", "minLen": 1, "maxLen": 7}
+  ],
+  "layout": [
+    {"type": "grid", "options": {"name": "L[i][j]: longest common subsequence of a[:i] and b[:j]"}, "bind": {
+      "values": "L",
+      "rows": "['∅'] + list(a)",
+      "cols": "['∅'] + list(b)",
+      "cell": "[i, j] if __line__ in (6, 8) else None",
+      "deps": "[[i - 1, j - 1]] if __line__ == 6 else [[i - 1, j], [i, j - 1]] if __line__ == 8 else []"
+    }}
+  ]
+}

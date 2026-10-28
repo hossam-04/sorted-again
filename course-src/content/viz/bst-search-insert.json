@@ -1,0 +1,17 @@
+{
+  "title": "Search, then insert, in a BST",
+  "function": "search_then_insert",
+  "args": {"level": [8, 4, 12, 2, 6, 10, 14], "target": 11},
+  "inputs": [
+    {"name": "level", "type": "json", "label": "BST, level by level (null for a missing child)", "maxLen": 15},
+    {"name": "target", "type": "int", "label": "value to find or insert"}
+  ],
+  "layout": [
+    {"type": "tree", "bind": {
+      "tree": "tree(root)",
+      "current": "node_id(new) if __line__ >= 28 else node_id(node) if __line__ >= 18 else None",
+      "path": "ids(path)"
+    }},
+    {"type": "vars", "bind": {"target": "target", "node": "node.val if node else None"}}
+  ]
+}

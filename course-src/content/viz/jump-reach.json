@@ -1,0 +1,14 @@
+{
+  "title": "How far can you get?",
+  "function": "can_reach_end",
+  "args": {"nums": [2, 0, 3, 0, 0, 1, 4]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "jump lengths", "minLen": 1, "maxLen": 10, "min": 0, "max": 9}],
+  "layout": [
+    {"type": "array", "options": {"name": "jump lengths: faded cells are out of reach so far"}, "bind": {
+      "values": "nums",
+      "range": "[0, min(reach, len(nums) - 1)]",
+      "pointers": "{'i': i} if 'i' in locals() else {}"
+    }},
+    {"type": "vars", "bind": {"reach": "reach"}}
+  ]
+}

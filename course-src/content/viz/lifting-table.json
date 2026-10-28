@@ -1,0 +1,24 @@
+{
+  "title": "Binary lifting: the jump table",
+  "function": "kth_ancestor",
+  "args": {"parent": [-1, 0, 0, 1, 1, 3, 5, 6], "node": 7, "k": 5},
+  "inputs": [
+    {"name": "parent", "type": "int[]", "label": "parent of each node (-1 for the root, node 0)", "minLen": 1, "maxLen": 12},
+    {"name": "node", "type": "int", "label": "start node", "min": 0, "max": 11},
+    {"name": "k", "type": "int", "label": "steps up", "min": 1, "max": 15}
+  ],
+  "layout": [
+    {"type": "tree", "options": {"name": "the tree"}, "bind": {
+      "tree": "forest([p if p >= 0 else v for v, p in enumerate(parent)])",
+      "current": "node if __line__ in (10, 14, 15) else v if 'v' in locals() and __line__ == 8 else None",
+      "visited": "[frm] if __line__ == 14 else [mid] if __line__ == 8 and mid != -1 else []"
+    }},
+    {"type": "grid", "options": {"name": "up[j][v]: the node 2^j steps above v"}, "bind": {
+      "values": "[r + [None] * (len(parent) - len(r)) for r in up] + ([row + [None] * (len(parent) - len(row))] if 'row' in locals() and (not up or row is not up[-1]) else [])",
+      "rows": "['jump ' + str(2 ** j) for j in range(len(up) + (1 if 'row' in locals() and row is not up[-1] else 0))]",
+      "cols": "['v=' + str(v) for v in range(len(parent))]",
+      "cell": "[j, v] if __line__ == 8 else [j, frm] if __line__ == 14 else None"
+    }},
+    {"type": "vars", "bind": {"k": "k", "node": "node"}}
+  ]
+}

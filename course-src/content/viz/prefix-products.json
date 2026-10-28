@@ -1,0 +1,19 @@
+{
+  "title": "Prefix and suffix products",
+  "function": "product_except_self",
+  "args": {"nums": [2, 3, 4, 5]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "nums", "minLen": 2, "maxLen": 8}],
+  "layout": [
+    {"type": "array", "options": {"name": "nums"}, "bind": {
+      "values": "nums",
+      "pointers": "{'i': i} if __line__ in (6, 7, 10, 11) else {}",
+      "range": "None"
+    }},
+    {"type": "array", "options": {"name": "answer"}, "bind": {
+      "values": "answer if __line__ > 2 else None",
+      "found": "list(range(len(answer))) if __line__ == 12 else []",
+      "pair": "[i] if __line__ in (6, 10) else []"
+    }},
+    {"type": "vars", "bind": {"left": "left if __line__ > 3 else None", "right": "right if __line__ > 7 else None"}}
+  ]
+}

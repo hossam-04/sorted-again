@@ -1,0 +1,21 @@
+{
+  "title": "Window maximum with a deque",
+  "function": "window_max",
+  "args": {"nums": [2, 7, 4, 1, 5, 3, 6], "k": 3},
+  "inputs": [
+    {"name": "nums", "type": "int[]", "label": "nums", "minLen": 1, "maxLen": 10},
+    {"name": "k", "type": "int", "label": "k", "min": 1, "max": 10}
+  ],
+  "layout": [
+    {"type": "array", "bind": {
+      "values": "nums",
+      "pointers": "{'i': i} if __line__ > 4 else {}",
+      "window": "[max(0, i - k + 1), i] if __line__ > 4 else None",
+      "found": "[dq[0]] if __line__ == 12 else []"
+    }},
+    {"type": "queue", "options": {"name": "dq (value @ position)"}, "bind": {
+      "items": "[str(nums[j]) + ' @' + str(j) for j in dq]"
+    }},
+    {"type": "vars", "bind": {"out": "out"}}
+  ]
+}

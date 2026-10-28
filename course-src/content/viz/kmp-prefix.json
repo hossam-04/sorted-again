@@ -1,0 +1,19 @@
+{
+  "title": "The KMP prefix function",
+  "function": "prefix_function",
+  "args": {"s": "abacabab"},
+  "inputs": [{"name": "s", "type": "str", "label": "a string", "minLen": 1, "maxLen": 16}],
+  "layout": [
+    {"type": "array", "options": {"name": "s: the border's prefix (green) and the suffix it matches (shaded)"}, "bind": {
+      "values": "list(s)",
+      "found": "list(range(k)) if 'i' in locals() else []",
+      "window": "[i - k + 1, i] if 'i' in locals() and k and __line__ in (8, 9) else None",
+      "pointers": "{'i': i, 'k': k} if 'i' in locals() and k < len(s) else {'i': i} if 'i' in locals() else {}"
+    }},
+    {"type": "array", "options": {"name": "pi"}, "bind": {
+      "values": "pi",
+      "pair": "[i] if 'i' in locals() and __line__ == 9 else []"
+    }},
+    {"type": "vars", "bind": {"k": "k"}}
+  ]
+}

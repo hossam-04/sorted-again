@@ -1,0 +1,17 @@
+{
+  "title": "Insert words, then look one up, in a trie",
+  "function": "insert_then_find",
+  "args": {"words": ["card", "care", "car", "dog"], "query": "ca"},
+  "inputs": [
+    {"name": "words", "type": "words", "label": "words to insert, separated by commas", "minLen": 1, "maxLen": 6},
+    {"name": "query", "type": "str", "label": "word to look up"}
+  ],
+  "layout": [
+    {"type": "tree", "bind": {
+      "tree": "trie(root)",
+      "current": "node_id(locals().get('node'))",
+      "path": "trie_path(root, locals().get('node'))"
+    }},
+    {"type": "vars", "bind": {"word": "locals().get('word')", "ch": "locals().get('ch')", "query": "query"}}
+  ]
+}

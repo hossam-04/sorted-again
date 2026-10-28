@@ -1,0 +1,20 @@
+{
+  "title": "Walking a spiral with four boundaries",
+  "function": "spiral",
+  "args": {"matrix": [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20]]},
+  "inputs": [{"name": "matrix", "type": "json", "label": "matrix (a list of rows of equal length)", "minLen": 1, "maxLen": 6}],
+  "layout": [
+    {"type": "grid", "options": {"name": "green: visited; the rest is the rectangle still to walk"}, "bind": {
+      "values": "matrix",
+      "path": "[list(p) for p in order] if 'order' in locals() else []",
+      "cell": "list(order[-1]) if 'order' in locals() and order and __line__ in (7, 10, 14, 18) else None"
+    }},
+    {"type": "vars", "bind": {
+      "top": "locals().get('top')", "bottom": "locals().get('bottom')",
+      "left": "locals().get('left')", "right": "locals().get('right')"
+    }},
+    {"type": "array", "options": {"name": "spiral order so far"}, "bind": {
+      "values": "[matrix[r][c] for r, c in order] if 'order' in locals() else []"
+    }}
+  ]
+}

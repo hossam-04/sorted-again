@@ -1,0 +1,14 @@
+{
+  "title": "Merging overlapping intervals",
+  "function": "merge",
+  "args": {"intervals": [[8, 10], [1, 3], [2, 6], [15, 18], [17, 20], [9, 12]]},
+  "inputs": [{"name": "intervals", "type": "json", "label": "intervals, for example [[1, 3], [2, 6]]", "minLen": 1, "maxLen": 8}],
+  "layout": [
+    {"type": "intervals", "options": {"name": "intervals, in the order they're processed", "mergedName": "merged so far"}, "bind": {
+      "items": "intervals",
+      "merged": "merged if 'merged' in locals() else []",
+      "current": "i if 'i' in locals() and __line__ != 9 else None",
+      "axis": "[min([s for s, e in intervals]), max([e for s, e in intervals])]"
+    }}
+  ]
+}

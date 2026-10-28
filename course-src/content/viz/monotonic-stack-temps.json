@@ -1,0 +1,21 @@
+{
+  "title": "Waiting for a warmer day",
+  "function": "daily_temperatures",
+  "args": {"temps": [45, 41, 43, 38, 50, 47]},
+  "inputs": [{"name": "temps", "type": "int[]", "label": "temperatures", "minLen": 1, "maxLen": 10}],
+  "layout": [
+    {"type": "array", "options": {"name": "temperatures"}, "bind": {
+      "values": "temps",
+      "pointers": "{'i': i} if __line__ > 3 else {}",
+      "pair": "[waiting[-1], i] if __line__ == 5 and waiting and temps[waiting[-1]] < t else []",
+      "visited": "list(waiting) if __line__ > 3 else []"
+    }},
+    {"type": "stack", "options": {"name": "waiting (day: temperature)"}, "bind": {
+      "items": "[str(j) + ': ' + str(temps[j]) + '°' for j in waiting]"
+    }},
+    {"type": "array", "options": {"name": "answer"}, "bind": {
+      "values": "answer",
+      "found": "[j] if __line__ == 7 else []"
+    }}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "sorted-again-dsa-course",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:js && npm run test:py",
+    "test:js": "node --test test/",
+    "test:py": "python3 -m unittest discover -s test/py",
+    "lc": "node tools/leetcode.mjs",
+    "verify": "node tools/compile.mjs",
+    "build": "node tools/compile.mjs && node build.mjs",
+    "assemble": "node build.mjs",
+    "serve": "node tools/serve.mjs ..",
+    "e2e": "node tools/e2e.mjs"
+  },
+  "dependencies": {
+    "codemirror": "5.65.18",
+    "marked": "^18.0.14",
+    "pyodide": "314.0.7",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "playwright-core": "1.63.0"
+  }
+}

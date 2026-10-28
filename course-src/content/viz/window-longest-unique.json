@@ -1,0 +1,19 @@
+{
+  "title": "A window without repeats",
+  "function": "longest_unique",
+  "args": {"s": "abcbade"},
+  "inputs": [{"name": "s", "type": "str", "label": "s", "minLen": 1, "maxLen": 12}],
+  "layout": [
+    {"type": "array", "bind": {
+      "values": "list(s)",
+      "pointers": "{'left': left, 'right': right} if __line__ > 3 else {}",
+      "window": "[left, right] if __line__ > 3 else None",
+      "pair": "[last[c], right] if __line__ == 5 and c in last else []"
+    }},
+    {"type": "map", "options": {"name": "last (character → position)"}, "bind": {
+      "entries": "entries(last)",
+      "hit": "c if __line__ in (5, 6, 7) else None"
+    }},
+    {"type": "vars", "bind": {"left": "left if __line__ > 2 else None", "right": "right if __line__ > 3 else None", "best": "best if __line__ > 2 else None"}}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "title": "House Robber, one cell at a time",
+  "function": "rob",
+  "args": {"nums": [5, 3, 4, 11, 2]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "cash in each house", "minLen": 1, "maxLen": 9, "min": 0, "max": 99}],
+  "layout": [
+    {"type": "array", "options": {"name": "houses"}, "bind": {
+      "values": "nums",
+      "pointers": "{'house': i - 1} if 'i' in locals() and __line__ != 8 else {}"
+    }},
+    {"type": "array", "options": {"name": "best[i]: the most from the first i houses"}, "bind": {
+      "values": "best",
+      "pair": "[i - 2, i - 1] if 'i' in locals() and __line__ in (5, 6, 7) else []",
+      "found": "[i] if 'i' in locals() and __line__ == 7 else [len(nums)] if __line__ == 8 else []"
+    }}
+  ]
+}

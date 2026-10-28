@@ -1,0 +1,25 @@
+{
+  "title": "Lazy deletion: window minimums with a heap",
+  "function": "window_minimums",
+  "args": {"nums": [4, 2, 12, 3, 8, 1, 7, 6], "k": 3},
+  "inputs": [
+    {"name": "nums", "type": "int[]", "label": "numbers", "minLen": 1, "maxLen": 12},
+    {"name": "k", "type": "int", "label": "window size", "min": 1, "max": 12}
+  ],
+  "layout": [
+    {"type": "array", "options": {"name": "nums, with the current window"}, "bind": {
+      "values": "nums",
+      "window": "[max(0, i - k + 1), i] if 'i' in locals() else None",
+      "pointers": "{'i': i} if 'i' in locals() else {}"
+    }},
+    {"type": "heap", "options": {"name": "the heap, gone numbers included"}, "bind": {
+      "items": "heap",
+      "swap": "[0] if __line__ == 17 and heap else []"
+    }},
+    {"type": "map", "options": {"name": "gone, but still in the heap"}, "bind": {
+      "entries": "entries({v: c for v, c in gone.items() if c})",
+      "hit": "nums[i - k] if __line__ == 12 else None"
+    }},
+    {"type": "vars", "bind": {"mins": "mins"}}
+  ]
+}

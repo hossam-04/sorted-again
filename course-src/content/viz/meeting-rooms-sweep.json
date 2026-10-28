@@ -1,0 +1,14 @@
+{
+  "title": "Counting rooms with a sweep line",
+  "function": "rooms_needed",
+  "args": {"meetings": [[1, 4], [2, 6], [4, 7], [8, 9]]},
+  "inputs": [{"name": "meetings", "type": "json", "label": "meetings, for example [[1, 4], [2, 6]]", "minLen": 1, "maxLen": 6}],
+  "layout": [
+    {"type": "intervals", "options": {"name": "meetings (numbered from 0)"}, "bind": {
+      "items": "meetings",
+      "current": "i if __line__ in (9, 10) else None",
+      "axis": "[min([s for s, e in meetings]), max([e for s, e in meetings])]"
+    }},
+    {"type": "vars", "bind": {"time": "time if __line__ in (9, 10) else None", "in use": "in_use if 'in_use' in locals() else 0", "most": "most if 'most' in locals() else 0"}}
+  ]
+}

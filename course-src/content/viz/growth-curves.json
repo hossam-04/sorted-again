@@ -1,0 +1,6 @@
+{
+  "title": "How the step count grows",
+  "static": true,
+  "renderer": "growth",
+  "args": {"n": 1000}
+}

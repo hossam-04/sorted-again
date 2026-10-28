@@ -1,0 +1,19 @@
+{
+  "title": "A running median with two heaps",
+  "function": "running_median",
+  "args": {"nums": [5, 15, 1, 3, 8, 7]},
+  "inputs": [
+    {"name": "nums", "type": "int[]", "label": "numbers, in the order they arrive", "minLen": 1, "maxLen": 12}
+  ],
+  "layout": [
+    {"type": "heap", "options": {"name": "lower half (a max-heap)"}, "bind": {
+      "items": "[-v for v in low]",
+      "swap": "[0] if __line__ in (18, 20) and low else []"
+    }},
+    {"type": "heap", "options": {"name": "upper half (a min-heap)"}, "bind": {
+      "items": "high",
+      "swap": "[0] if __line__ == 20 and high else []"
+    }},
+    {"type": "vars", "bind": {"x": "locals().get('x')", "medians": "medians"}}
+  ]
+}

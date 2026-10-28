@@ -1,0 +1,20 @@
+{
+  "title": "Dijkstra's algorithm",
+  "function": "shortest_times",
+  "args": {"graph": {"A": [["B", 4], ["C", 1]], "B": [["A", 4], ["C", 2], ["D", 5]], "C": [["A", 1], ["B", 2], ["D", 8], ["E", 10]], "D": [["B", 5], ["C", 8], ["E", 2], ["F", 6]], "E": [["C", 10], ["D", 2], ["F", 3]], "F": [["D", 6], ["E", 3]]}, "start": "A"},
+  "inputs": [{"name": "start", "type": "str", "label": "start node, A to F"}],
+  "layout": [
+    {"type": "graph", "options": {
+      "name": "travel times on the links; under each node, the best time known so far",
+      "nodes": [{"id": "A", "x": 8, "y": 30}, {"id": "B", "x": 30, "y": 8}, {"id": "C", "x": 30, "y": 52}, {"id": "D", "x": 56, "y": 20}, {"id": "E", "x": 56, "y": 52}, {"id": "F", "x": 80, "y": 36}],
+      "edges": [{"a": "A", "b": "B", "w": 4}, {"a": "A", "b": "C", "w": 1}, {"a": "B", "b": "C", "w": 2}, {"a": "B", "b": "D", "w": 5}, {"a": "C", "b": "D", "w": 8}, {"a": "C", "b": "E", "w": 10}, {"a": "D", "b": "E", "w": 2}, {"a": "D", "b": "F", "w": 6}, {"a": "E", "b": "F", "w": 3}]
+    }, "bind": {
+      "dist": "dist",
+      "done": "list(done)",
+      "frontier": "[v for _, v in heap]",
+      "current": "u if 'u' in locals() and __line__ != 18 else None",
+      "edges_on": "[[u, v]] if __line__ in (16, 17) else []"
+    }},
+    {"type": "queue", "options": {"name": "heap, earliest first (time:node)"}, "bind": {"items": "[f'{t}:{x}' for t, x in sorted(heap)]"}}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Every call of a plain recursive Fibonacci",
+  "function": "fib",
+  "mode": "calls",
+  "call_label": "'fib(' + str(n) + ')'",
+  "args": {"n": 5},
+  "inputs": [{"name": "n", "type": "int", "label": "n", "min": 0, "max": 7}],
+  "layout": [
+    {"type": "calltree", "options": {"name": "calls"}},
+    {"type": "vars", "bind": {"n": "n", "depth": "__depth__"}}
+  ]
+}

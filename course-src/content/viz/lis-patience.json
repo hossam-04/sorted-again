@@ -1,0 +1,16 @@
+{
+  "title": "Longest increasing subsequence with smallest endings",
+  "function": "lis_length",
+  "args": {"nums": [3, 1, 4, 1, 5, 9, 2, 6]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "numbers", "minLen": 1, "maxLen": 10, "min": -99, "max": 99}],
+  "layout": [
+    {"type": "array", "options": {"name": "nums"}, "bind": {
+      "values": "nums",
+      "pointers": "{'i': i} if 'i' in locals() and __line__ != 12 else {}"
+    }},
+    {"type": "array", "options": {"name": "tails: the smallest ending for each length (index k is length k + 1)"}, "bind": {
+      "values": "tails",
+      "found": "[k] if 'k' in locals() and __line__ in (7, 9, 11) and k < len(tails) else []"
+    }}
+  ]
+}

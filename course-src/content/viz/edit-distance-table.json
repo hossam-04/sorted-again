@@ -1,0 +1,18 @@
+{
+  "title": "Filling the edit distance table",
+  "function": "edit_distance",
+  "args": {"a": "flaw", "b": "lawn"},
+  "inputs": [
+    {"name": "a", "type": "str", "label": "from", "maxLen": 7},
+    {"name": "b", "type": "str", "label": "to", "maxLen": 7}
+  ],
+  "layout": [
+    {"type": "grid", "options": {"name": "D[i][j]: edits to turn a[:i] into b[:j]"}, "bind": {
+      "values": "D",
+      "rows": "['∅'] + list(a)",
+      "cols": "['∅'] + list(b)",
+      "cell": "[i, 0] if __line__ == 4 else [0, j] if __line__ == 6 else [i, j] if __line__ in (10, 12) else None",
+      "deps": "[[i - 1, j - 1]] if __line__ == 10 else [[i - 1, j - 1], [i - 1, j], [i, j - 1]] if __line__ == 12 else []"
+    }}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Reversing a linked list",
+  "function": "reverse_list",
+  "args": {"values": [4, 7, 1, 9]},
+  "inputs": [{"name": "values", "type": "int[]", "label": "values", "minLen": 1, "maxLen": 7}],
+  "layout": [
+    {"type": "list", "bind": {
+      "nodes": "nodes(reach(head, prev, cur, nxt)) if __line__ in (17, 18, 19, 20) else nodes(reach(head, prev, cur)) if __line__ > 14 else nodes(reach(head))",
+      "order": "sorted(ids(reach(head, prev, cur, nxt))) if __line__ in (17, 18, 19, 20) else sorted(ids(reach(head, prev, cur))) if __line__ > 14 else ids(reach(head))",
+      "pointers": "{'prev': node_id(prev), 'cur': node_id(cur), 'nxt': node_id(nxt) if __line__ in (17, 18, 19, 20) else None} if __line__ > 14 else {'head': node_id(head)}"
+    }}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Push, then pop, in a min-heap",
+  "function": "push_then_pop",
+  "args": {"heap": [2, 4, 3, 7, 5, 6], "value": 1},
+  "inputs": [
+    {"name": "heap", "type": "int[]", "label": "numbers (arranged into a min-heap first)", "minLen": 1, "maxLen": 15},
+    {"name": "value", "type": "int", "label": "number to push"}
+  ],
+  "layout": [
+    {"type": "heap", "options": {"name": "heap, as a tree and as the list it's stored in"}, "bind": {
+      "items": "heap",
+      "swap": "[p, i] if __line__ in (9, 10, 11, 12) else [i, c] if __line__ in (20, 21, 22, 23, 24, 25) else [len(heap) - 1] if __line__ == 6 else [0] if __line__ in (14, 17) else [i] if __line__ in (7, 8, 13, 18, 19, 26) else []"
+    }},
+    {"type": "vars", "bind": {"value": "value", "top": "locals().get('top')", "last": "locals().get('last')"}}
+  ]
+}

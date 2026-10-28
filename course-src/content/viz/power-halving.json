@@ -1,0 +1,15 @@
+{
+  "title": "Fast power by halving",
+  "function": "power",
+  "mode": "calls",
+  "call_label": "'power(' + str(x) + ', ' + str(n) + ')'",
+  "args": {"x": 3, "n": 13},
+  "inputs": [
+    {"name": "x", "type": "int", "label": "x", "min": -9, "max": 9},
+    {"name": "n", "type": "int", "label": "n", "min": 0, "max": 100}
+  ],
+  "layout": [
+    {"type": "calltree", "options": {"name": "calls"}},
+    {"type": "vars", "bind": {"x": "x", "n": "n", "half": "half if __line__ > 4 else None"}}
+  ]
+}

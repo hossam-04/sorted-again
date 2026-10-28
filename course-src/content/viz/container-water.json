@@ -1,0 +1,16 @@
+{
+  "title": "Container with the most water",
+  "function": "max_area",
+  "args": {"height": [2, 5, 4, 3, 6, 1, 4]},
+  "inputs": [{"name": "height", "type": "int[]", "label": "height", "minLen": 2, "maxLen": 12}],
+  "layout": [
+    {"type": "bars", "bind": {
+      "values": "height",
+      "pointers": "{'l': l, 'r': r}",
+      "range": "[l, r]",
+      "pair": "[l, r] if __line__ in (5, 6, 7) else []",
+      "fill": "[l, r, min(height[l], height[r])] if __line__ in (5, 6) else None"
+    }},
+    {"type": "vars", "bind": {"width": "r - l", "area": "area", "best": "best"}}
+  ]
+}

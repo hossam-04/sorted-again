@@ -1,0 +1,14 @@
+{
+  "title": "Clearing the lowest 1 bit",
+  "function": "count_ones",
+  "args": {"n": 180},
+  "inputs": [{"name": "n", "type": "int", "label": "n (0 to 255)", "min": 0, "max": 255}],
+  "layout": [
+    {"type": "bits", "options": {"name": "outlined: the bits that change", "width": 8}, "bind": {
+      "values": "[n, below] if __line__ == 4 else [below + 1, below, n] if __line__ == 5 else [n]",
+      "labels": "['n', 'n - 1'] if __line__ == 4 else ['n', 'n - 1', 'n & (n - 1)'] if __line__ == 5 else ['n']",
+      "mask": "n ^ below if __line__ == 4 else (below + 1) ^ n if __line__ == 5 else None"
+    }},
+    {"type": "vars", "bind": {"count": "count"}}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Two Sum with a hash map",
+  "function": "two_sum",
+  "args": {"nums": [3, 9, 14, 6, 2, 11], "target": 8},
+  "inputs": [
+    {"name": "nums", "type": "int[]", "label": "nums", "minLen": 2, "maxLen": 10},
+    {"name": "target", "type": "int", "label": "target"}
+  ],
+  "layout": [
+    {"type": "array", "bind": {
+      "values": "nums",
+      "pointers": "{'i': i} if __line__ > 2 else {}",
+      "visited": "list(range(i)) if __line__ > 2 else []",
+      "found": "[seen[need], i] if __line__ == 6 else []"
+    }},
+    {"type": "map", "options": {"name": "seen (value → position)"}, "bind": {
+      "entries": "entries(seen)",
+      "hit": "need if __line__ in (5, 6) and need in seen else None"
+    }},
+    {"type": "vars", "bind": {"x": "x if __line__ > 2 else None", "need": "need if __line__ > 3 else None", "target": "target"}}
+  ]
+}

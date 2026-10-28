@@ -1,0 +1,15 @@
+{
+  "title": "N-Queens: place, check, back up",
+  "function": "first_solution",
+  "args": {"n": 4},
+  "inputs": [{"name": "n", "type": "int", "label": "board size n", "min": 1, "max": 5}],
+  "layout": [
+    {"type": "grid", "options": {"name": "board (Q: a queen, ×: attacked)"}, "bind": {
+      "values": "[['Q' if i < len(queens) and queens[i] == j else '×' if j in cols or i - j in diag or i + j in anti else '' for j in range(n)] for i in range(n)]",
+      "deps": "[[i, j] for i in range(n) for j in range(n) if j in cols or i - j in diag or i + j in anti]",
+      "path": "[[i, q] for i, q in enumerate(queens)]",
+      "cell": "[r, locals().get('c')] if locals().get('c') is not None and __line__ != 21 else None"
+    }},
+    {"type": "vars", "bind": {"row": "locals().get('r')", "queens": "queens"}}
+  ]
+}

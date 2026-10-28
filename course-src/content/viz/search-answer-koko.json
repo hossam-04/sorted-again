@@ -1,0 +1,23 @@
+{
+  "title": "Searching for the answer",
+  "function": "min_speed",
+  "args": {"piles": [4, 7, 2, 6], "h": 8},
+  "inputs": [
+    {"name": "piles", "type": "int[]", "label": "piles", "minLen": 1, "maxLen": 8, "min": 1, "max": 15},
+    {"name": "h", "type": "int", "label": "hours h", "min": 1, "max": 60}
+  ],
+  "layout": [
+    {"type": "array", "options": {"name": "speeds to choose from"}, "bind": {
+      "values": "list(range(1, max(piles) + 1))",
+      "pointers": "({'lo': lo - 1, 'k': k - 1, 'hi': hi - 1} if __line__ in (4, 5, 6, 7, 9) else {'lo': lo - 1, 'hi': hi - 1}) if __line__ > 1 else {}",
+      "range": "[lo - 1, hi - 1] if __line__ > 1 else None",
+      "found": "[lo - 1] if __line__ == 10 else []",
+      "labels": "{i: '' for i in range(max(piles))}"
+    }},
+    {"type": "array", "options": {"name": "piles (hours at speed k)"}, "bind": {
+      "values": "piles",
+      "labels": "{i: str((p + k - 1) // k) + 'h' for i, p in enumerate(piles)} if __line__ in (5, 6, 7, 9) else {i: '' for i in range(len(piles))}"
+    }},
+    {"type": "vars", "bind": {"k": "k if __line__ > 3 else None", "hours": "hours if __line__ > 4 else None", "h": "h"}}
+  ]
+}

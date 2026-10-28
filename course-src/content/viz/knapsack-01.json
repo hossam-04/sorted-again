@@ -1,0 +1,19 @@
+{
+  "title": "The 0/1 knapsack table",
+  "function": "knapsack",
+  "args": {"weights": [1, 3, 4, 5], "values": [1, 4, 5, 7], "capacity": 7},
+  "inputs": [
+    {"name": "weights", "type": "int[]", "label": "weights", "minLen": 1, "maxLen": 5, "min": 1, "max": 9},
+    {"name": "values", "type": "int[]", "label": "values (one per item)", "sameLenAs": "weights", "minLen": 1, "maxLen": 5, "min": 0, "max": 99},
+    {"name": "capacity", "type": "int", "label": "capacity", "min": 0, "max": 9}
+  ],
+  "layout": [
+    {"type": "grid", "options": {"name": "best[i][c]: rows are items 1 to i, columns are capacities"}, "bind": {
+      "values": "best",
+      "rows": "['none'] + [f'{k + 1}: w{wt} v{vl}' for k, (wt, vl) in enumerate(zip(weights, values))]",
+      "cols": "list(range(capacity + 1))",
+      "cell": "[i, c] if __line__ in (7, 8, 9) else None",
+      "deps": "[[i - 1, c]] + ([[i - 1, c - w]] if w <= c else []) if __line__ in (7, 8, 9) else []"
+    }}
+  ]
+}

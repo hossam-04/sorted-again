@@ -1,0 +1,18 @@
+{
+  "title": "Halving the range",
+  "function": "binary_search",
+  "args": {"nums": [3, 8, 14, 19, 25, 31, 40, 47, 52, 60], "target": 47},
+  "inputs": [
+    {"name": "nums", "type": "int[]", "label": "nums (sorted)", "minLen": 1, "maxLen": 12, "sorted": true},
+    {"name": "target", "type": "int", "label": "target"}
+  ],
+  "layout": [
+    {"type": "array", "bind": {
+      "values": "nums",
+      "pointers": "{'lo': lo, 'mid': mid, 'hi': hi} if __line__ > 3 else {'lo': lo, 'hi': hi}",
+      "range": "[lo, hi]",
+      "found": "[mid] if __line__ == 6 else []"
+    }},
+    {"type": "vars", "bind": {"lo": "lo", "hi": "hi", "mid": "mid if __line__ > 3 else None", "target": "target"}}
+  ]
+}

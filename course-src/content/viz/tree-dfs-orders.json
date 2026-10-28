@@ -1,0 +1,19 @@
+{
+  "title": "Depth-first traversal",
+  "function": "traverse",
+  "args": {"level": [8, 4, 12, 2, 6, 10, 14], "order": "in"},
+  "inputs": [
+    {"name": "level", "type": "json", "label": "tree, level by level (null for a missing child)", "maxLen": 15},
+    {"name": "order", "type": "str", "label": "order: pre, in or post"}
+  ],
+  "layout": [
+    {"type": "tree", "bind": {
+      "tree": "tree(path[0] if locals().get('path') else locals().get('root') or locals().get('node'))",
+      "current": "node_id(locals().get('node'))",
+      "path": "ids(path)",
+      "visited": "ids(out)"
+    }},
+    {"type": "stack", "options": {"name": "calls in progress"}, "bind": {"items": "[n.val for n in path]"}},
+    {"type": "array", "options": {"name": "output"}, "bind": {"values": "[n.val for n in out]"}}
+  ]
+}

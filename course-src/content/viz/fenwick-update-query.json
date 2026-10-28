@@ -1,0 +1,29 @@
+{
+  "title": "A Fenwick tree: one update, one prefix sum",
+  "function": "update_then_sum",
+  "args": {"nums": [3, 1, 4, 1, 5, 9, 2, 6], "index": 2, "change": 5, "count": 7},
+  "inputs": [
+    {"name": "nums", "type": "int[]", "label": "numbers", "minLen": 1, "maxLen": 16},
+    {"name": "index", "type": "int", "label": "index to change (from 0)", "min": 0, "max": 15},
+    {"name": "change", "type": "int", "label": "amount to add"},
+    {"name": "count", "type": "int", "label": "then sum the first … numbers", "min": 1, "max": 16}
+  ],
+  "layout": [
+    {"type": "array", "options": {"name": "the numbers, by position from 1 (with the current block's span)"}, "bind": {
+      "values": "nums",
+      "labels": "{k: k + 1 for k in range(len(nums))}",
+      "window": "[i - (i & -i), i - 1] if 'i' in locals() and 0 < i <= len(nums) and __line__ in (14, 18) else None"
+    }},
+    {"type": "array", "options": {"name": "tree: block sums, by position"}, "bind": {
+      "values": "tree[1:] if 'tree' in locals() else []",
+      "labels": "{k: k + 1 for k in range(len(nums))}",
+      "found": "[i - 1] if 'i' in locals() and 0 < i <= len(nums) and __line__ in (14, 18) else []"
+    }},
+    {"type": "bits", "options": {"name": "the position in binary; the lowest set bit is highlighted", "width": 5}, "bind": {
+      "values": "[i] if 'i' in locals() else []",
+      "labels": "['i']",
+      "mask": "i & -i if 'i' in locals() else None"
+    }},
+    {"type": "vars", "bind": {"total": "locals().get('total')"}}
+  ]
+}

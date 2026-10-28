@@ -1,0 +1,22 @@
+{
+  "title": "Refuelling in hindsight",
+  "function": "min_stops",
+  "args": {"target": 60, "start_fuel": 15, "stations": [[10, 5], [15, 30], [25, 4], [40, 10], [50, 3]]},
+  "inputs": [
+    {"name": "target", "type": "int", "label": "target position", "min": 1, "max": 1000},
+    {"name": "start_fuel", "type": "int", "label": "starting fuel", "min": 1, "max": 1000},
+    {"name": "stations", "type": "json", "label": "stations as [position, fuel], sorted by position", "minLen": 0, "maxLen": 8}
+  ],
+  "layout": [
+    {"type": "array", "options": {"name": "fuel at each station (position underneath); dimmed: out of reach"}, "bind": {
+      "values": "[f for _, f in stations]",
+      "labels": "{i: '@' + str(p) for i, (p, _) in enumerate(stations)}",
+      "range": "[0, max([i for i, (p, _) in enumerate(stations) if p <= reach] or [-1])]"
+    }},
+    {"type": "heap", "options": {"name": "stations passed, most fuel on top"}, "bind": {
+      "items": "[-v for v in passed]",
+      "swap": "[0] if passed else []"
+    }},
+    {"type": "vars", "bind": {"reach": "reach", "stops": "stops", "target": "target"}}
+  ]
+}

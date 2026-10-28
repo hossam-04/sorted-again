@@ -1,0 +1,19 @@
+{
+  "title": "Two pointers on a sorted array",
+  "function": "two_sum_sorted",
+  "args": {"nums": [1, 3, 4, 6, 8, 11, 15], "target": 14},
+  "inputs": [
+    {"name": "nums", "type": "int[]", "label": "nums (sorted)", "maxLen": 12, "sorted": true},
+    {"name": "target", "type": "int", "label": "target"}
+  ],
+  "layout": [
+    {"type": "array", "bind": {
+      "values": "nums",
+      "pointers": "{'l': l, 'r': r}",
+      "range": "[l, r]",
+      "pair": "[l, r] if __line__ in (4, 5, 7) else []",
+      "found": "[l, r] if __line__ == 6 else []"
+    }},
+    {"type": "vars", "bind": {"l": "l", "r": "r", "s": "s", "target": "target"}}
+  ]
+}

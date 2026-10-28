@@ -1,0 +1,15 @@
+{
+  "title": "Kadane's algorithm",
+  "function": "max_subarray",
+  "args": {"nums": [3, -4, 2, -1, 3, 1, -5, 4]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "numbers", "minLen": 1, "maxLen": 10, "min": -99, "max": 99}],
+  "layout": [
+    {"type": "array", "options": {"name": "shaded: the current run; green: the best run so far"}, "bind": {
+      "values": "nums",
+      "window": "[start, i] if 'i' in locals() else [0, 0]",
+      "found": "list(range(lo, hi + 1)) if 'hi' in locals() else [0]",
+      "pointers": "{'i': i} if 'i' in locals() else {}"
+    }},
+    {"type": "vars", "bind": {"cur": "cur", "best": "best"}}
+  ]
+}

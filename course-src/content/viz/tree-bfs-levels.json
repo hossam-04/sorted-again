@@ -1,0 +1,14 @@
+{
+  "title": "Breadth-first, level by level",
+  "function": "level_order",
+  "args": {"level": [8, 4, 12, 2, 6, null, 14, null, null, 5]},
+  "inputs": [{"name": "level", "type": "json", "label": "tree, level by level (null for a missing child)", "maxLen": 15}],
+  "layout": [
+    {"type": "tree", "bind": {
+      "tree": "tree(root)",
+      "current": "node_id(locals().get('node')) if __line__ in (25, 26, 27, 28, 29) else None"
+    }},
+    {"type": "queue", "options": {"name": "queue"}, "bind": {"items": "[n.val for n in queue]"}},
+    {"type": "vars", "bind": {"levels": "out"}}
+  ]
+}

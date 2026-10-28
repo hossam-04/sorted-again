@@ -1,0 +1,16 @@
+{
+  "title": "The sieve of Eratosthenes",
+  "function": "sieve",
+  "args": {"n": 30},
+  "inputs": [{"name": "n", "type": "int", "label": "find the primes below", "min": 3, "max": 60}],
+  "layout": [
+    {"type": "array", "options": {"name": "numbers below n: crossed out (grey), known primes (green)"}, "bind": {
+      "values": "list(range(n))",
+      "range": "[2, n - 1]",
+      "visited": "[k for k in range(2, n) if not is_prime[k]] if 'is_prime' in locals() else []",
+      "found": "[k for k in range(2, n) if is_prime[k] and (__line__ == 10 or ('p' in locals() and k <= p and (k < p or __line__ in (6, 8))))] if 'is_prime' in locals() else []",
+      "pair": "[multiple] if __line__ == 8 else []",
+      "pointers": "{'p': p} if 'p' in locals() and p < n and __line__ != 10 else {}"
+    }}
+  ]
+}

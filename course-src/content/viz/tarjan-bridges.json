@@ -1,0 +1,20 @@
+{
+  "title": "Finding bridges with low-link values",
+  "function": "find_bridges",
+  "see_outer": true,
+  "args": {"graph": {"A": ["B", "C"], "B": ["A", "C"], "C": ["A", "B", "D"], "D": ["C", "E", "F"], "E": ["D", "F"], "F": ["D", "E", "G"], "G": ["F"]}, "start": "A"},
+  "inputs": [{"name": "start", "type": "str", "label": "start node, A to G"}],
+  "layout": [
+    {"type": "graph", "options": {
+      "name": "under each node: discovery time / low",
+      "nodes": [{"id": "A", "x": 8, "y": 14}, {"id": "B", "x": 8, "y": 50}, {"id": "C", "x": 30, "y": 32}, {"id": "D", "x": 54, "y": 32}, {"id": "E", "x": 76, "y": 14}, {"id": "F", "x": 76, "y": 50}, {"id": "G", "x": 98, "y": 50}],
+      "edges": [{"a": "A", "b": "B"}, {"a": "A", "b": "C"}, {"a": "B", "b": "C"}, {"a": "C", "b": "D"}, {"a": "D", "b": "E"}, {"a": "D", "b": "F"}, {"a": "E", "b": "F"}, {"a": "F", "b": "G"}]
+    }, "bind": {
+      "dist": "{x: str(disc[x]) + '/' + str(low[x]) for x in disc}",
+      "visited": "list(disc)",
+      "current": "u if 'u' in locals() else None",
+      "edges_on": "[[b[0], b[1]] for b in bridges] + ([[u, v]] if 'v' in locals() and 'u' in locals() and __line__ in (12, 15, 17) else [])"
+    }},
+    {"type": "vars", "bind": {"bridges": "[b[0] + '–' + b[1] for b in bridges]"}}
+  ]
+}

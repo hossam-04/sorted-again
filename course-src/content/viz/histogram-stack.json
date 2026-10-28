@@ -1,0 +1,17 @@
+{
+  "title": "The largest rectangle with a stack",
+  "function": "largest_rectangle",
+  "args": {"heights": [3, 5, 6, 2, 4, 4]},
+  "inputs": [{"name": "heights", "type": "int[]", "label": "heights", "minLen": 1, "maxLen": 10, "min": 0}],
+  "layout": [
+    {"type": "bars", "bind": {
+      "values": "heights",
+      "pointers": "{'i': i} if __line__ > 2 and i < len(heights) else {}",
+      "rect": "[j, i - 1, height] if __line__ in (7, 8) else None"
+    }},
+    {"type": "stack", "options": {"name": "stack (height from start)"}, "bind": {
+      "items": "[str(hh) + ' from ' + str(ss) for ss, hh in stack]"
+    }},
+    {"type": "vars", "bind": {"best": "best if __line__ > 2 else None"}}
+  ]
+}

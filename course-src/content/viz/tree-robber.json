@@ -1,0 +1,16 @@
+{
+  "title": "Tree DP: two numbers per node",
+  "function": "rob_tree",
+  "see_outer": true,
+  "args": {"values": [4, 9, 2, 1, 3, null, 6]},
+  "inputs": [{"name": "values", "type": "json", "label": "the tree, level by level, for example [4, 9, 2, 1, 3, null, 6]", "minLen": 1, "maxLen": 15}],
+  "layout": [
+    {"type": "tree", "options": {"name": "under each finished node: best with it taken / best with it skipped"}, "bind": {
+      "tree": "tree(root) if root else None",
+      "current": "node_id(node) if 'node' in locals() and node is not None else None",
+      "labels": "{node_id(n): str(t) + ' / ' + str(s) for n, (t, s) in pair.items()}",
+      "visited": "[node_id(n) for n in pair]"
+    }},
+    {"type": "vars", "bind": {"take": "locals().get('take')", "skip": "locals().get('skip')"}}
+  ]
+}

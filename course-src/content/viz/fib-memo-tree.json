@@ -1,0 +1,12 @@
+{
+  "title": "The same Fibonacci with a memo",
+  "function": "fib",
+  "mode": "calls",
+  "call_label": "'fib(' + str(n) + ')'",
+  "args": {"n": 6, "memo": {}},
+  "inputs": [{"name": "n", "type": "int", "label": "n", "min": 0, "max": 12}],
+  "layout": [
+    {"type": "calltree", "options": {"name": "calls"}},
+    {"type": "map", "options": {"name": "memo (n → fib(n))"}, "bind": {"entries": "entries(memo)"}}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Distances from every gate at once",
+  "function": "nearest_gate",
+  "args": {"plan": ["G..", ".#.", "..G"]},
+  "inputs": [{"name": "plan", "type": "words", "label": "rows of the plan (G gate, # wall, . room), separated by commas", "minLen": 1, "maxLen": 5}],
+  "layout": [
+    {"type": "grid", "options": {"name": "plan: the numbers are steps to the nearest gate"}, "bind": {
+      "values": "[['■' if plan[i][j] == '#' else 'G' if plan[i][j] == 'G' else '' if dist[i][j] is None else dist[i][j] for j in range(len(plan[0]))] for i in range(len(plan))] if 'dist' in locals() else [['■' if ch == '#' else 'G' if ch == 'G' else '' for ch in row] for row in plan]",
+      "cell": "[r, c] if 'r' in locals() and __line__ != 24 else None",
+      "deps": "[list(x) for x in queue] if 'queue' in locals() else []",
+      "path": "[[nr, nc]] if __line__ in (22, 23) else []"
+    }},
+    {"type": "queue", "options": {"name": "queue (row, column)"}, "bind": {"items": "[f'({a},{b})' for a, b in queue] if 'queue' in locals() else []"}}
+  ]
+}

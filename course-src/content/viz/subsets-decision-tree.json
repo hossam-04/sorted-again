@@ -1,0 +1,13 @@
+{
+  "title": "The decision tree of subsets",
+  "function": "subsets",
+  "mode": "calls",
+  "calls_of": "explore",
+  "call_label": "str(path).replace(' ', '')",
+  "args": {"nums": [1, 2, 3]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "different numbers", "minLen": 1, "maxLen": 4}],
+  "layout": [
+    {"type": "calltree", "options": {"name": "calls of explore, labelled with path"}},
+    {"type": "vars", "bind": {"path": "path", "out": "out"}}
+  ]
+}
