@@ -13,6 +13,7 @@
     'binary-search': ['two-pointers', 'arrays', 'greedy', 'heaps'],
     'linked-lists': ['two-pointers', 'recursion', 'heaps', 'arrays'],
     recursion: ['backtracking', 'dp', 'trees', 'stacks'],
+    sorting: ['intervals', 'two-pointers', 'heaps', 'binary-search'],
     trees: ['graphs', 'recursion', 'backtracking', 'tries'],
     tries: ['trees', 'backtracking', 'arrays', 'graphs'],
     heaps: ['greedy', 'intervals', 'binary-search', 'graphs'],

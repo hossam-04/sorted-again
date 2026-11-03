@@ -49,6 +49,7 @@
     })();
     const meta = SA.course.meta;
     const advancedCount = SA.problemOrder.filter((id) => SA.problems[id].track === 'advanced').length;
+    const extraCount = SA.problemOrder.filter((id) => SA.problems[id].track === 'extra').length;
     const statRow = (label, [s, t]) => el('tr', null, el('td', null, label), el('td', { class: 'num' }, s), el('td', { class: 'num' }, t),
       el('td', null, el('span', { class: 'bar', role: 'img', 'aria-label': `${Math.round((100 * s) / Math.max(t, 1))}%` }, el('i', { style: `width:${(100 * s) / Math.max(t, 1)}%` }))));
     const first = SA.moduleById.start || SA.modules[0];
@@ -56,7 +57,7 @@
       el('div', null,
         el('div', { class: 'kicker' }, 'Data structures and algorithms, in Python'),
         el('h1', { html: 'Get your algorithms back by <span class="fn">running</span> them.' }),
-        el('p', { class: 'lede' }, `For people who learned this once. ${SA.count(SA.modules.length, 'short module')}, ${SA.count(meta.vizCount, 'step-through visualizer')} and ${SA.count(SA.problemOrder.length, 'problem')}: the NeetCode 150 list${advancedCount ? `, then ${advancedCount} advanced ones` : ''}, in Python ${meta.python.split('.').slice(0, 2).join('.')}. Each one is checked right here against hidden edge cases, randomised tests and a performance test.`),
+        el('p', { class: 'lede' }, `For people who learned this once. ${SA.count(SA.modules.length, 'short module')}, ${SA.count(meta.vizCount, 'step-through visualizer')} and ${SA.count(SA.problemOrder.length, 'problem')}: the NeetCode 150 list${extraCount ? `, ${extraCount} more for a topic it skips` : ''}${advancedCount ? `, then ${advancedCount} advanced ones` : ''}, in Python ${meta.python.split('.').slice(0, 2).join('.')}. Each one is checked right here against hidden edge cases, randomised tests and a performance test.`),
         el('div', { class: 'actions' },
           lastLabel ? el('a', { class: 'btn primary', href: `#${last}` }, lastLabel) : first ? el('a', { class: 'btn primary', href: `#${first.id}` }, first.id === 'start' ? 'Start with the warm-up' : `Start: ${first.title}`) : null,
           el('a', { class: 'btn', href: '#problems' }, 'Browse problems'),
@@ -95,6 +96,7 @@
 
   // ------------------------------------------------------------------ problems index
   const filters = { q: '', diff: 'All', status: 'All', track: 'All', module: 'all', b75: false };
+  const TRACKS = { 'NeetCode 150': 'core', Extra: 'extra', Advanced: 'advanced' };  // filter label -> problem track
   SA.views.problems = function () {
     SA.setTitle('Problems');
     const search = el('input', { type: 'search', id: 'problem-search', placeholder: 'Search by number, title or pattern', 'aria-label': 'Search problems', value: filters.q });
@@ -112,7 +114,7 @@
     const advanced = withProblems.filter((m) => m.part === 'advanced');
     const modSel = el('select', { id: 'problem-module', 'aria-label': 'Module' }, el('option', { value: 'all' }, 'All modules'),
       advanced.length
-        ? [el('optgroup', { label: 'NeetCode 150' }, withProblems.filter((m) => m.part !== 'advanced').map(modOption)), el('optgroup', { label: 'Advanced' }, advanced.map(modOption))]
+        ? [el('optgroup', { label: 'Core' }, withProblems.filter((m) => m.part !== 'advanced').map(modOption)), el('optgroup', { label: 'Advanced' }, advanced.map(modOption))]
         : withProblems.map(modOption));
     modSel.addEventListener('change', () => { filters.module = modSel.value; draw(); });
     const b75 = el('button', { class: 'btn small', type: 'button', 'aria-pressed': String(filters.b75) }, 'Blind 75 only');
@@ -121,6 +123,7 @@
       b75.setAttribute('aria-pressed', String(filters.b75));
       draw();
     });
+    const hasTrack = (track) => SA.problemOrder.some((id) => SA.problems[id].track === track);
     const tbody = el('tbody');
     const count = el('p', { class: 'meta' });
     function draw() {
@@ -131,7 +134,7 @@
         if (filters.status === 'Solved' && !SA.isSolved(id)) return false;
         if (filters.status === 'To do' && SA.isSolved(id)) return false;
         if (filters.module !== 'all' && p.module !== filters.module) return false;
-        if (filters.track !== 'All' && (p.track === 'advanced') !== (filters.track === 'Advanced')) return false;
+        if (filters.track !== 'All' && p.track !== TRACKS[filters.track]) return false;
         if (filters.b75 && !p.blind75) return false;
         if (q && !`${id} ${p.title} ${p.lcTitle} ${p.patterns.join(' ')} ${SA.moduleById[p.module].title}`.toLowerCase().includes(q)) return false;
         return true;
@@ -154,8 +157,8 @@
     SA.main.replaceChildren(el('div', { class: 'home' },
       el('div', { class: 'kicker' }, 'Practice'),
       el('h1', { class: 'title' }, 'All problems'),
-      el('p', { class: 'lede' }, `Every problem from the NeetCode 150 list${SA.problemOrder.some((id) => SA.problems[id].track === 'advanced') ? ', then the advanced part\'s problems,' : ''} grouped by the module that teaches the idea. The 7 that are Premium on LeetCode are written here as the course's own versions. Descriptions and test data are the course's own; the titles link to LeetCode.`),
-      el('div', { class: 'filters' }, search, seg('diff', ['All', 'Easy', 'Medium', 'Hard']), seg('status', ['All', 'To do', 'Solved']), seg('track', ['All', 'NeetCode 150', 'Advanced']), modSel, b75),
+      el('p', { class: 'lede' }, `Every problem from the NeetCode 150 list${hasTrack('extra') ? ', a few extra ones for the sorting module, which NeetCode doesn\'t cover,' : ''}${hasTrack('advanced') ? `${hasTrack('extra') ? '' : ','} then the advanced part's problems,` : ''} grouped by the module that teaches the idea. The 7 that are Premium on LeetCode are written here as the course's own versions. Descriptions and test data are the course's own; the titles link to LeetCode.`),
+      el('div', { class: 'filters' }, search, seg('diff', ['All', 'Easy', 'Medium', 'Hard']), seg('status', ['All', 'To do', 'Solved']), seg('track', ['All', ...Object.keys(TRACKS).filter((t) => hasTrack(TRACKS[t]))]), modSel, b75),
       count,
       el('div', { class: 'ptable-wrap' }, el('table', { class: 'ptable' },
         el('thead', null, el('tr', null, el('th', null, el('span', { class: 'sr' }, 'Status')), el('th', null, '#'), el('th', null, 'Problem'), el('th', null, 'Level'), el('th', { class: 'mod' }, 'Module'), el('th', { class: 'pat' }, 'Patterns'))),

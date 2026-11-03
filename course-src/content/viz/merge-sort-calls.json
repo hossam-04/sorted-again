@@ -1,0 +1,14 @@
+{
+  "title": "Merge sort: split, sort the halves, merge",
+  "function": "merge_sort",
+  "mode": "calls",
+  "call_label": "str(nums).replace(' ', '')",
+  "args": {"nums": [5, 2, 4, 7, 1, 3]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "nums", "minLen": 1, "maxLen": 8}],
+  "layout": [
+    {"type": "calltree", "options": {"name": "calls, labelled with the list each one sorts"}},
+    {"type": "array", "options": {"name": "left"}, "bind": {"values": "locals().get('left') if 'merged' in locals() else None", "pointers": "{'i': i} if 'i' in locals() and i < len(left) else {}"}},
+    {"type": "array", "options": {"name": "right"}, "bind": {"values": "locals().get('right') if 'merged' in locals() else None", "pointers": "{'j': j} if 'j' in locals() and j < len(right) else {}"}},
+    {"type": "array", "options": {"name": "merged"}, "bind": {"values": "locals().get('merged')"}}
+  ]
+}

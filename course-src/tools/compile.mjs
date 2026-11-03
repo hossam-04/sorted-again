@@ -17,7 +17,7 @@ import { buildCards, checkCards, sheetModule, cardCounts } from './cards.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 export const MODULE_ORDER = ['start', 'big-o', 'arrays', 'two-pointers', 'sliding-window', 'stacks', 'binary-search', 'linked-lists',
-  'recursion', 'trees', 'tries', 'heaps', 'backtracking', 'graphs', 'intervals', 'greedy', 'dp', 'bits-math', 'playbook',
+  'recursion', 'sorting', 'trees', 'tries', 'heaps', 'backtracking', 'graphs', 'intervals', 'greedy', 'dp', 'bits-math', 'playbook',
   // The advanced part: lessons that build on the core course (front matter part: advanced).
   'ordered-structures', 'greedy-heaps', 'range-queries', 'binary-lifting', 'string-matching', 'advanced-graphs', 'advanced-dp', 'number-theory'];
 const PYTHON_VERSION = '3.14.2';

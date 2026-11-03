@@ -48,6 +48,7 @@ Most interview problems are a known pattern in disguise. Some signals to listen 
 | the longest or shortest contiguous run with a condition | a sliding window | [[m:sliding-window]] |
 | "next greater", matching brackets, undo | a stack, often monotonic | [[m:stacks]] |
 | sorted data, or "the smallest value that works" | binary search, maybe on the answer | [[m:binary-search]] |
+| "would this be easy if it were sorted?", values in a small range | sort first, or count instead of sorting | [[m:sorting]] |
 | linked nodes, a cycle, the middle | fast and slow pointers | [[m:linked-lists]] |
 | hierarchy, recursion on the left and right subtrees | tree DFS or BFS | [[m:trees]] |
 | prefixes, autocomplete, a dictionary of words | a trie | [[m:tries]] |

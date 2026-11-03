@@ -169,6 +169,8 @@ Python runs ordinary recursive calls without growing the browser's own stack, so
 
 The stack depth is a separate cost: it's the longest path in the call tree, which is O(n) for the shrink-by-one patterns and O(log n) for halving.
 
+Merge sort and quicksort, the two classic divide-and-conquer sorts, are worked through in [[m:sorting]].
+
 :::interview
 State the base case and the recursive case before writing code, and say what the recursive call returns ("`dfs(node)` returns the height of the subtree at node"). Then estimate the tree: how many calls, how much work each. If the same arguments repeat, say "I'll memoise this" and give the new cost: distinct states times work per state.
 :::

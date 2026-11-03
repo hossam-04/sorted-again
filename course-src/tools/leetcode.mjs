@@ -11,8 +11,10 @@ const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const CACHE = path.join(ROOT, 'cache', 'lc');
 const SPECS = path.join(ROOT, '..', 'docs', 'superpowers', 'specs');
 const readIndex = (name, track) => JSON.parse(fs.readFileSync(path.join(SPECS, name), 'utf8')).map((p) => ({ ...p, track }));
-// The NeetCode 150, then the advanced part's problems. A module's problems follow this order.
-export const INDEX = [...readIndex('2026-10-02-problem-index.json', 'core'), ...readIndex('2026-10-23-advanced-index.json', 'advanced')];
+// The NeetCode 150, the extra problems of core modules NeetCode doesn't cover (sorting), then the advanced part's
+// problems. A module's problems follow this order.
+export const INDEX = [...readIndex('2026-10-02-problem-index.json', 'core'), ...readIndex('2026-11-03-extra-index.json', 'extra'),
+  ...readIndex('2026-10-23-advanced-index.json', 'advanced')];
 const QUERY = `query q($s: String!) { question(titleSlug: $s) {
   questionFrontendId title titleSlug difficulty isPaidOnly content metaData exampleTestcaseList } }`;
 

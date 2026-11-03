@@ -10,34 +10,35 @@ It's one HTML page. Python 3.14 runs inside it (through Pyodide), so there's not
 
 ## What's inside
 
-- **27 modules.** 19 core modules that cover the NeetCode 150, then an advanced part of 8 for companies that ask Hard problems.
-- **192 problems.** The NeetCode 150 (with the Blind 75 marked) plus 42 advanced ones. Each has its own description and tests, starter code, **Run** on the examples and **Check** against hidden edge cases, randomized tests and a performance test. Your code runs in a Web Worker, so an infinite loop times out instead of freezing the page.
+- **28 modules.** 20 core modules that cover the NeetCode 150, then an advanced part of 8 for companies that ask Hard problems.
+- **197 problems.** The NeetCode 150 (with the Blind 75 marked), 5 more for the sorting module, and 42 advanced ones. Each has its own description and tests, starter code, **Run** on the examples and **Check** against hidden edge cases, randomized tests and a performance test. Your code runs in a Web Worker, so an infinite loop times out instead of freezing the page.
 - **Hints** that open one at a time, a **reference solution** with its complexity, **alternatives** from brute force to optimal, and **common wrong answers** you can run to see exactly how they fail.
-- **47 step-through visualizers**: pointers moving, stacks and heaps changing, trees and graphs being walked, DP tables filling in. You can trace them on your own input.
+- **50 step-through visualizers**: pointers moving, stacks and heaps changing, trees and graphs being walked, DP tables filling in. You can trace them on your own input.
 - **Quizzes** for every module, a **pattern drill**, **flashcards** with spaced repetition, a **patterns cheat sheet**, a **complexity reference** and a **playground**.
 - Light and dark themes, readable contrast (WCAG AA), and a phone layout.
 
 | | Core modules | | Advanced part |
 |---|---|---|---|
-| 00 | Start here (warm-up quiz) | 19 | Ordered data structures |
-| 01 | Big-O and complexity | 20 | Greedy with heaps |
-| 02 | Arrays and hashing | 21 | Fenwick and segment trees |
-| 03 | Two pointers | 22 | Binary lifting and sparse tables |
-| 04 | Sliding window | 23 | String matching |
-| 05 | Stacks and monotonic stacks | 24 | Advanced graphs |
-| 06 | Binary search | 25 | Advanced dynamic programming |
-| 07 | Linked lists | 26 | Number theory |
+| 00 | Start here (warm-up quiz) | 20 | Ordered data structures |
+| 01 | Big-O and complexity | 21 | Greedy with heaps |
+| 02 | Arrays and hashing | 22 | Fenwick and segment trees |
+| 03 | Two pointers | 23 | Binary lifting and sparse tables |
+| 04 | Sliding window | 24 | String matching |
+| 05 | Stacks and monotonic stacks | 25 | Advanced graphs |
+| 06 | Binary search | 26 | Advanced dynamic programming |
+| 07 | Linked lists | 27 | Number theory |
 | 08 | Recursion | | |
-| 09 | Trees and binary search trees | | |
-| 10 | Tries | | |
-| 11 | Heaps and priority queues | | |
-| 12 | Backtracking | | |
-| 13 | Graphs | | |
-| 14 | Intervals | | |
-| 15 | Greedy algorithms | | |
-| 16 | Dynamic programming | | |
-| 17 | Bit manipulation and math | | |
-| 18 | Interview playbook | | |
+| 09 | Sorting algorithms | | |
+| 10 | Trees and binary search trees | | |
+| 11 | Tries | | |
+| 12 | Heaps and priority queues | | |
+| 13 | Backtracking | | |
+| 14 | Graphs | | |
+| 15 | Intervals | | |
+| 16 | Greedy algorithms | | |
+| 17 | Dynamic programming | | |
+| 18 | Bit manipulation and math | | |
+| 19 | Interview playbook | | |
 
 ## Use it offline
 
