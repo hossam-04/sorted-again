@@ -205,7 +205,7 @@ A recursive function costs the number of calls times the work per call. Drawing 
 
 - **One call on n − 1** (summing a list recursively): n calls, O(n).
 - **One call on n / 2** (binary search): log n calls, O(log n).
-- **Two calls on n / 2, plus O(n) work** (merge sort): log n levels of the tree, each doing O(n) in total, so O(n log n).
+- **Two calls on n / 2, plus O(n) work** ([[m:sorting|merge sort]]): log n levels of the tree, each doing O(n) in total, so O(n log n).
 - **Two calls on n − 1** (plain Fibonacci): the tree doubles at every level, about O(2ⁿ) calls. A cache brings it down to O(n), as in [[m:recursion]].
 
 Every call that hasn't returned yet keeps a frame on the call stack, so recursion uses memory even when it stores nothing else: a recursion n levels deep takes O(n) space. Plain Python stops at 1,000 levels by default. This page allows 100,000, and [[m:recursion]] covers what to do when that's not enough.

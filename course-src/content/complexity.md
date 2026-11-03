@@ -79,6 +79,8 @@ Building a string with `+=` in a loop copies it each time unless CPython can reu
 
 ## Classic algorithms
 
+How each sort works, and when to choose which, is in [[m:sorting]].
+
 | Algorithm | Time | Extra space | Notes |
 |---|---|---|---|
 | Binary search | `O(log n)` | `O(1)` | needs sorted data or a monotonic yes/no question |

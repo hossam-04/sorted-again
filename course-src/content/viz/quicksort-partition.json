@@ -1,0 +1,14 @@
+{
+  "title": "Partitioning around a pivot",
+  "function": "partition",
+  "args": {"nums": [7, 2, 9, 4, 1, 8, 3, 5]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "nums (the last one is the pivot)", "minLen": 1, "maxLen": 12, "min": 0}],
+  "layout": [
+    {"type": "bars", "bind": {
+      "values": "nums",
+      "pointers": "({'i': i} if 'i' in locals() else {}) | ({'j': j} if 'j' in locals() and __line__ in (6, 7, 8) else {}) | ({'pivot': hi} if __line__ < 9 else {})",
+      "pair": "[j] if __line__ == 6 else [i, j] if __line__ == 7 else [i] if __line__ == 10 else []"
+    }},
+    {"type": "vars", "bind": {"pivot": "pivot", "i": "locals().get('i')", "j": "locals().get('j')"}}
+  ]
+}

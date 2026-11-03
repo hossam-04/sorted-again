@@ -1,0 +1,15 @@
+{
+  "title": "Insertion sort, one number at a time",
+  "function": "insertion_sort",
+  "args": {"nums": [5, 2, 4, 6, 1, 3]},
+  "inputs": [{"name": "nums", "type": "int[]", "label": "nums", "minLen": 1, "maxLen": 10, "min": 0}],
+  "layout": [
+    {"type": "bars", "bind": {
+      "values": "nums",
+      "pointers": "{'j': j} if 'j' in locals() and __line__ != 7 else {}",
+      "range": "[0, i] if __line__ != 7 else None",
+      "pair": "[j - 1, j] if __line__ in (4, 5) and j > 0 else []"
+    }},
+    {"type": "vars", "bind": {"i": "i", "j": "locals().get('j')"}}
+  ]
+}
