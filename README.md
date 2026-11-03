@@ -10,10 +10,10 @@ It's one HTML page. Python 3.14 runs inside it (through Pyodide), so there's not
 
 ## What's inside
 
-- **28 modules.** 20 core modules that cover the NeetCode 150, then an advanced part of 8 for companies that ask Hard problems.
+- **28 modules.** 20 core modules that cover the NeetCode 150's topics, plus sorting algorithms, which it skips. Then an advanced part of 8 for companies that ask Hard problems.
 - **197 problems.** The NeetCode 150 (with the Blind 75 marked), 5 more for the sorting module, and 42 advanced ones. Each has its own description and tests, starter code, **Run** on the examples and **Check** against hidden edge cases, randomized tests and a performance test. Your code runs in a Web Worker, so an infinite loop times out instead of freezing the page.
 - **Hints** that open one at a time, a **reference solution** with its complexity, **alternatives** from brute force to optimal, and **common wrong answers** you can run to see exactly how they fail.
-- **50 step-through visualizers**: pointers moving, stacks and heaps changing, trees and graphs being walked, DP tables filling in. You can trace them on your own input.
+- **50 step-through visualizers**: pointers moving, lists being sorted and merged, stacks and heaps changing, trees and graphs being walked, DP tables filling in. You can trace them on your own input.
 - **Quizzes** for every module, a **pattern drill**, **flashcards** with spaced repetition, a **patterns cheat sheet**, a **complexity reference** and a **playground**.
 - Light and dark themes, readable contrast (WCAG AA), and a phone layout.
 
@@ -78,6 +78,6 @@ Third-party software and fonts are listed in [THIRD-PARTY-NOTICES.md](THIRD-PART
 
 ## Credits
 
-Made by [hossam-04](https://github.com/hossam-04). Python in the browser by [Pyodide](https://pyodide.org). The problem list follows [NeetCode 150](https://neetcode.io/practice). Every problem links to LeetCode, but all descriptions, examples and tests here are original. Sorted Again isn't affiliated with LeetCode or NeetCode.
+Made by [hossam-04](https://github.com/hossam-04). Python in the browser by [Pyodide](https://pyodide.org). The problem list follows [NeetCode 150](https://neetcode.io/practice), with 5 more for the sorting module. Every problem links to LeetCode, but all descriptions, examples and tests here are original. Sorted Again isn't affiliated with LeetCode or NeetCode.
 
 Its companion is [SELECT Again](https://github.com/hossam-04/select-again), the same idea for SQL. Both fit into [The Engineer's Syllabus](https://github.com/hossam-04/engineers-syllabus).
