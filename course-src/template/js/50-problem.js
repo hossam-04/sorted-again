@@ -99,10 +99,12 @@
       if (r.timeout) {
         out.replaceChildren(el('div', { class: 'verdict bad' }, el('h3', null, icon('clock', 20), 'Time limit'),
           el('p', null, `${label} ran longer than 20 s while every step was being recorded. Look for a loop that never ends, or recursion without a base case.`)));
+        SA.revealOutput(out);
         return;
       }
       if (r.unavailable || r.crashed || r.status === 'compile_error') {
         SA.results.renderRun(out, r, p, hooks());
+        SA.revealOutput(out);
         return;
       }
       stepping = SA.stepper.mount(out, r, {
@@ -113,6 +115,7 @@
         },
       });
       out.querySelector('.stepper').focus({ preventScroll: true });
+      SA.revealOutput(out);
     }
 
     async function run() {
@@ -124,6 +127,7 @@
       out.replaceChildren(SA.results.pending(SA.py.state === 'ready' ? 'Running the examples…' : 'Starting Python, then running the examples…'));
       const r = await SA.py.call('run', { problem: p.spec, code: editor.getValue() });
       SA.results.renderRun(out, r, p, hooks());
+      SA.revealOutput(out);
       busy(false);
     }
 
@@ -137,6 +141,7 @@
       out.replaceChildren(strip.node);
       const r = await SA.py.call('check', { problem: p.spec, code: editor.getValue(), opts: { perf_limit_ms: p.limits.perf_ms } }, { onProgress: strip.update });
       const verdict = SA.results.renderCheck(out, r, p, { ...hooks(), strip });
+      SA.revealOutput(out);
       if (verdict === 'accepted') {
         const first = !store.state.solved[id];
         store.state.solved[id] = store.state.solved[id] || Date.now();
@@ -212,6 +217,7 @@
       host.replaceChildren(strip.node);
       const r = await SA.py.call('check', { problem: p.spec, code, opts: { perf_limit_ms: p.limits.perf_ms } }, { onProgress: strip.update });
       SA.results.renderCheck(host, r, p, { strip, onLine() {}, mark() {} });
+      SA.revealOutput(host);
       btn.disabled = false;
     }
     const copyBtn = (code, pre) => el('button', { class: 'btn ghost small', type: 'button', onclick: () => SA.copyText(code, pre) }, icon('copy', 14), 'Copy');

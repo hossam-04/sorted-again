@@ -360,6 +360,16 @@
   };
   SA.kbd = (combo) => el('span', { class: 'kbd' }, combo.replace('Mod', SA.isMac ? '⌘' : 'Ctrl'));
 
+  // After a Run or Check, scroll the page so the result is on screen when it landed below the fold (stacked
+  // layouts). Never so far that its top goes under the top bar. Rendering is synchronous, so no rAF here:
+  // rAF doesn't fire in a hidden or background tab.
+  SA.revealOutput = function (node) {
+    const r = node.getBoundingClientRect();
+    if (!r.height || r.bottom <= window.innerHeight) return;
+    const delta = Math.min(r.bottom - window.innerHeight + 16, r.top - 90); // 90 ≈ top bar + margin
+    if (delta > 0) window.scrollBy(0, delta);
+  };
+
   // ------------------------------------------------------------------ complexity chips
   // Each curve is f(x)/f(1) for x in (0, 1], all on one frame, so steepness is comparable between chips.
   const GROWTH = {

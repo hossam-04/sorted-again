@@ -39,6 +39,7 @@
       note.textContent = SA.py.state === 'ready' ? 'running…' : 'starting Python…';
       const r = await SA.py.call('exec', { code: editor ? editor.getValue() : ex.code, limit_ms: 10000 });
       renderOutput(out, r, hooks);
+      SA.revealOutput(out);
       note.textContent = r.ms !== undefined ? `ran here in ${SA.fmtMs(r.ms)}` : '';
       runBtn.disabled = false;
     }

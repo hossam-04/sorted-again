@@ -161,3 +161,17 @@ test('progress codes carry flashcard schedules, and older codes without them imp
   assert.deepEqual(store.state.flashDeck, { arrays: 300, trees: 900 });
   assert.equal(store.importCode(code({ flashCards: 'broken', flashDeck: [1] })).ok, true);
 });
+
+test('revealOutput scrolls a result below the fold into view, without hiding its top under the top bar', () => {
+  const { revealOutput } = globalThis.SA;
+  const scrolls = [];
+  globalThis.innerHeight = 800;
+  globalThis.scrollBy = (x, y) => scrolls.push(y);
+  const node = (top, height) => ({ getBoundingClientRect: () => ({ top, bottom: top + height, height }) });
+  revealOutput(node(700, 300));   // 200px below the fold: bring its bottom up, plus a 16px margin
+  revealOutput(node(400, 2000));  // taller than the screen: stop with its top just under the top bar
+  revealOutput(node(100, 300));   // already fully visible
+  revealOutput(node(900, 0));     // hidden (no height)
+  revealOutput(node(60, 900));    // top already at the top bar
+  assert.deepEqual(scrolls, [216, 310]);
+});
