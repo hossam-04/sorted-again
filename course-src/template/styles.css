@@ -345,7 +345,10 @@ pre.code code { font: inherit; white-space: pre; }
   .problem { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); grid-template-areas: "top work" "bottom work"; column-gap: 28px; }
   .p-work { position: sticky; top: calc(var(--topbar-h) + 18px); align-self: start; max-height: calc(100vh - var(--topbar-h) - 36px); display: flex; flex-direction: column; }
   .p-work .work-card { max-height: 100%; }
-  .p-work .work-out { overflow: auto; }
+  /* The card is clipped to the screen, so a long answer must not push Run/Check and the output out of it:
+     cap the editor (CodeMirror's own scroller, so it keeps the cursor in view) and give the output the rest. */
+  .p-work .CodeMirror-scroll { max-height: 45vh; }
+  .p-work .work-out { overflow: auto; flex: 1 1 auto; min-height: 0; }
 }
 .p-head .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; }
 .p-head h1.title { font-size: clamp(28px, 3.6vw, 38px); }

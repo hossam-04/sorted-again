@@ -202,6 +202,7 @@ print(f"set:  {(time.perf_counter() - t) * 1000:.3f} ms")
         if (r.error) out.append(el('div', { class: 'ex-err' }, SA.results.errorBlock(r.error, hooks)));
         out.append(el('div', { class: 'out-foot' }, el('span', null, r.error ? 'stopped with an error' : 'finished'), el('span', null, SA.fmtMs(r.ms))));
       }
+      SA.revealOutput(out);
       runBtn.disabled = false;
     }
     editor = SA.editor(edHost, store.state.play || SAMPLE, { label: 'Playground code', lineNumbers: true, onRun: run, onChange: (v) => { store.state.play = v; store.save(); } });
